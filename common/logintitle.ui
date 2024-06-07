@@ -19,19 +19,35 @@
      <item>
       <widget class="QLabel" name="login_logo">
        <property name="text">
-        <string>1111111111</string>
+        <string>图标</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="DiskName">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
-        <string>TextLabel</string>
+        <string>diskname</string>
        </property>
       </widget>
      </item>
      <item>
       <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_2">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>

@@ -18,12 +18,11 @@ public:
     设置图片样式
     -------------*/
     //设置图片需要的元素
-    void SetLogOPicture(QPixmap login);
-    void SetSetPicture(QPixmap login);
-    void SetMinWindowPicture(QPixmap login);
-    void SetClsWindowPicture(QPixmap login);
-
-
+    void SetLogOPicture();
+    void settitlename();
+    void SetSetPicture();
+    void SetMinWindowPicture();
+    void SetClsWindowPicture();
 
 
     /*------------

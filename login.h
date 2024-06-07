@@ -14,6 +14,11 @@ class login : public QDialog
 public:
     explicit login(QWidget *parent = 0);
     ~login();
+    //设置窗口标题栏隐藏
+    void SetTiltleHide();
+
+    //设置窗口移动
+
 
 private:
     Ui::login *ui;

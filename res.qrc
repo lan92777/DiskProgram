@@ -27,5 +27,6 @@
         <file>images/top2.png</file>
         <file>images/top3.png</file>
         <file>images/upload.png</file>
+        <file>images/disklogo.png</file>
     </qresource>
 </RCC>
