@@ -2,6 +2,8 @@
 #define LOGINTITLE_H
 
 #include <QWidget>
+#include <QIcon>
+#include <QToolButton>
 
 namespace Ui {
 class logintitle;
@@ -38,8 +40,13 @@ private:
     QWidget *m_parent;
     //图片元素
     QPixmap logopicture;
-    QPixmap setpicture;
-    QPixmap closepicture;
+    QIcon seticon;
+    QIcon closeicon;
+    QIcon minicon;
+
+signals:
+    void ShowSetWidget();
+    void CloseWindow();
 };
 
 #endif // LOGINTITLE_H
