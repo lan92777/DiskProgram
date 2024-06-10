@@ -21,12 +21,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="logintitle" name="widget_2" native="true">
-     <zorder>stackedWidget</zorder>
-     <zorder>stackedWidget</zorder>
-     <zorder>horizontalSpacer_22</zorder>
-     <zorder>stackedWidget</zorder>
-    </widget>
+    <widget class="logintitle" name="widget_2" native="true"/>
    </item>
    <item>
     <widget class="QStackedWidget" name="stackedWidget">

@@ -2,6 +2,8 @@
 #define LOGIN_H
 
 #include <QDialog>
+#include <QPainter>
+#include <QDebug>
 
 namespace Ui {
 class login;
@@ -22,8 +24,8 @@ public:
 
     //样式设置
 protected:
-  //  void paintEvent(QPaintEvent *);
 
+   void paintEvent(QPaintEvent *);
 
 private:
     Ui::login *ui;
