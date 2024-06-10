@@ -4,7 +4,9 @@
 #include <QWidget>
 #include <QIcon>
 #include <QToolButton>
+#include <QMouseEvent>
 
+#include<QDebug>
 namespace Ui {
 class logintitle;
 }
@@ -26,12 +28,19 @@ public:
     void SetMinWindowPicture();
     void SetClsWindowPicture();
 
-
     /*------------
     设置与父窗口的交互
     -------------*/
     //设置父窗口指针
     void setparent(QWidget *parent);
+
+protected:
+
+    //设置鼠标移动窗口事件
+    void mousePressEvent(QMouseEvent *ev);
+    void mouseMoveEvent(QMouseEvent *ev);
+
+
 
 private:
     //窗口元素是
@@ -43,6 +52,9 @@ private:
     QIcon seticon;
     QIcon closeicon;
     QIcon minicon;
+    //相对位置坐标点
+    QPoint m_pos;
+    QPoint pos;
 
 signals:
     void ShowSetWidget();

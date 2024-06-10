@@ -20,6 +20,11 @@ public:
     //设置窗口移动
 
 
+    //样式设置
+protected:
+  //  void paintEvent(QPaintEvent *);
+
+
 private:
     Ui::login *ui;
 };

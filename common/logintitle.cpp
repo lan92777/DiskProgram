@@ -80,6 +80,28 @@ void logintitle::SetClsWindowPicture(){
     //设置内容
 }
 
+//
+void logintitle::mousePressEvent(QMouseEvent *ev)
+{
+    // 如果是左键, 计算窗口左上角, 和当前按钮位置的距离
+    if(ev->button() == Qt::LeftButton)
+    {
+        // 计算和窗口左上角的相对位置
+        m_pos = ev->globalPos() - m_parent->geometry().topLeft();
+    }
+}
+
+
+
+void logintitle::mouseMoveEvent(QMouseEvent *ev)
+{
+    // 移动是持续的状态, 需要使用buttons
+    if(ev->buttons() & Qt::LeftButton)
+    {
+        QPoint pos = ev->globalPos() - m_pos;
+        m_parent->move(pos);
+    }
+}
 logintitle::~logintitle()
 {
     delete ui;
