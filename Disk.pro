@@ -14,34 +14,34 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
+    mainwindow.cpp \
     login.cpp \
-    selfwindow/logintitle.cpp \
     window_components/dashboard.cpp \
     window_components/myfile.cpp \
     window_components/sharelist.cpp \
     window_components/downlist.cpp \
     window_components/trans.cpp \
-    common/des.c
+    common/des.c \
+    common/logintitle.cpp
 
 HEADERS  += mainwindow.h \
     login.h \
-    selfwindow/logintitle.h \
     window_components/dashboard.h \
     window_components/myfile.h \
     window_components/sharelist.h \
     window_components/downlist.h \
     window_components/trans.h \
-    common/des.h
+    common/des.h \
+    common/logintitle.h
 
 FORMS    += mainwindow.ui \
     login.ui \
-    selfwindow/logintitle.ui \
     window_components/dashboard.ui \
     window_components/myfile.ui \
     window_components/sharelist.ui \
     window_components/downlist.ui \
-    window_components/trans.ui
+    window_components/trans.ui \
+    common/logintitle.ui
 
 RESOURCES += \
     res.qrc

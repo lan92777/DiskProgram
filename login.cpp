@@ -11,7 +11,12 @@ login::login(QWidget *parent) :QDialog(parent),ui(new Ui::login)
     //设置程序属性
     SetTiltleHide();
     this->setWindowIcon(QIcon(":/images/logo.ico"));
+    connect(ui->loginhead, &logintitle::CloseWindow, [=]()
+    {
+        close();
 
+
+    });
 
 
 

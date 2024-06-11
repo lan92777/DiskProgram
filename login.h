@@ -4,7 +4,7 @@
 #include <QDialog>
 #include <QPainter>
 #include <QDebug>
-
+#include<common/logintitle.h>
 namespace Ui {
 class login;
 }
