@@ -11,9 +11,29 @@ login::login(QWidget *parent) :QDialog(parent),ui(new Ui::login)
     //设置程序属性
     SetTiltleHide();
     this->setWindowIcon(QIcon(":/images/logo.ico"));
+    ui->stackedWidget->setCurrentWidget(ui->Login);
+    //切换界面
+    connect(ui->log_register_btn,&QToolButton::clicked,[=](){
+        ui->stackedWidget->setCurrentWidget(ui->Register);
+    });
+
+
+
+    //关闭操作
     connect(ui->loginhead, &logintitle::CloseWindow, [=]()
     {
-        close();
+         if(ui->stackedWidget->currentWidget() == ui->Login)
+        {
+            close();
+        }
+        else if(ui->stackedWidget->currentWidget() == ui->Register)
+        {
+            ui->stackedWidget->setCurrentWidget(ui->Login);
+        }
+        else
+        {
+            close();
+        }
 
 
     });

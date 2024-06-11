@@ -26,7 +26,7 @@
    <item>
     <widget class="QStackedWidget" name="stackedWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="Login">
       <widget class="QWidget" name="widget" native="true">
@@ -237,7 +237,7 @@
                </spacer>
               </item>
               <item>
-               <widget class="QToolButton" name="log_register_btn_2">
+               <widget class="QToolButton" name="log_register_btn">
                 <property name="font">
                  <font>
                   <family>新宋体</family>
