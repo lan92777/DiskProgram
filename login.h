@@ -18,11 +18,8 @@ public:
     ~login();
     //设置窗口标题栏隐藏
     void SetTiltleHide();
-
-    //设置窗口移动
-
-
     //样式设置
+    void SetDateFormat();
 protected:
 
    void paintEvent(QPaintEvent *);
