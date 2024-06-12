@@ -13,6 +13,7 @@ login::login(QWidget *parent) :QDialog(parent),ui(new Ui::login)
     SetTiltleHide();
     this->setWindowIcon(QIcon(":/images/logo.ico"));
     ui->stackedWidget->setCurrentWidget(ui->Login);
+
     //设置数据格式
     SetDateFormat();
 
@@ -21,10 +22,14 @@ login::login(QWidget *parent) :QDialog(parent),ui(new Ui::login)
     //切换注册界面
     connect(ui->log_register_btn,&QToolButton::clicked,[=](){
         ui->stackedWidget->setCurrentWidget(ui->Register);
+
+        ui->reg_usr->setFocus();
     });
     //切换设置界面
-    connect(ui->loginhead, &logintitle::ShowSetWidget,[=](){
+    connect(ui->loginhead, &logintitle::SetWindow,[=](){
         ui->stackedWidget->setCurrentWidget(ui->Set);
+        ui->address_server->setFocus();
+
     });
 
     //关闭操作
@@ -36,21 +41,37 @@ login::login(QWidget *parent) :QDialog(parent),ui(new Ui::login)
         }
         else if(ui->stackedWidget->currentWidget() == ui->Register)
         {
+            //清空数据然后返回到登陆界面
+            ui->reg_usr->clear();
+            ui->reg_nickname->clear();
+            ui->reg_pwd->clear();
+            ui->reg_surepwd->clear();
+            ui->reg_phone->clear();
+            ui->reg_mail->clear();
             ui->stackedWidget->setCurrentWidget(ui->Login);
+            ui->log_usr->setFocus();
         }
         else if(ui->stackedWidget->currentWidget() == ui->Set)
         {
+            ui->address_server->clear();
+            ui->port_server->clear();
             ui->stackedWidget->setCurrentWidget(ui->Login);
+
+            ui->log_usr->setFocus();
         }
         else
         {
             close();
         }
 
-
     });
+    //输入操作时 回车键的设置
+    EnterEvent();
+    this->installEventFilter(this);
 
 
+     //测试操作
+    testdate();
 
 }
 
@@ -90,3 +111,40 @@ void login::SetDateFormat()
     ui->reg_pwd->setToolTip("合法字符:[a-z|A-Z|#|@|0-9|-|_|*],字符个数: 6~18");
     ui->reg_surepwd->setToolTip("合法字符:[a-z|A-Z|#|@|0-9|-|_|*],字符个数: 6~18");
 }
+void login::testdate(){
+    ui->reg_usr->setText("kevin_666");
+    ui->reg_nickname->setText("kevin@666");
+    ui->reg_pwd->setText("123456");
+    ui->reg_surepwd->setText("123456");
+    ui->reg_phone->setText("11111111111");
+    ui->reg_mail->setText("abc@qq.com");
+
+}
+
+ void login::EnterEvent(){
+
+     //connect(ui->log_usr, &QLineEdit::returnPressed,[=](){
+    //   ui->log_pwd->setFocus();
+  //
+
+    //  });
+
+
+
+
+ }
+
+ bool login::eventFilter(QObject* watched, QEvent* event)
+ {
+
+     if (event->type() == QEvent::KeyPress)
+     {
+         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
+          if (keyEvent->key() == Qt::Key_Return || keyEvent->key() == Qt::Key_Enter) {
+                       return true;
+     }
+        return    QWidget::eventFilter(watched, event);
+     }
+
+}
+

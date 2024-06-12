@@ -29,8 +29,11 @@ logintitle::logintitle(QWidget *parent) :
 
     connect(ui->setbutton, &QToolButton::clicked, [=]()
     {
-        emit ShowSetWidget();
+        emit SetWindow();
     });
+
+
+
     connect(ui->closewindow, &QToolButton::clicked, [=]()
     {
         emit CloseWindow();

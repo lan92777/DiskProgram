@@ -57,7 +57,7 @@ private:
     QPoint pos;
 
 signals:
-    void ShowSetWidget();
+    void SetWindow();
     void CloseWindow();
 };
 

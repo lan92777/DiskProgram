@@ -20,10 +20,15 @@ public:
     void SetTiltleHide();
     //样式设置
     void SetDateFormat();
+    //测试操作
+    void testdate();
+    //输入时回车键的操作
+    void EnterEvent();
 protected:
-
-   void paintEvent(QPaintEvent *);
-
+    //背景设置（回调函数）
+    void paintEvent(QPaintEvent *);
+    //事件过滤器(处理enter输入的问题)
+    bool eventFilter(QObject* watched, QEvent* event) override;
 private:
     Ui::login *ui;
 };
