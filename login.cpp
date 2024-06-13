@@ -26,6 +26,7 @@ login::login(QWidget *parent) :QDialog(parent),ui(new Ui::login)
         ui->reg_usr->setFocus();
     });
     //切换设置界面
+
     connect(ui->loginhead, &logintitle::SetWindow,[=](){
         ui->stackedWidget->setCurrentWidget(ui->Set);
         ui->address_server->setFocus();
@@ -136,12 +137,22 @@ void login::testdate(){
 
  bool login::eventFilter(QObject* watched, QEvent* event)
  {
+     /*
+     if (ui->log_usr->hasFocus())
+     {
+        //disconnect(lineEdit, &QLineEdit::textChanged, this, &MyWidget::onTextChanged);
+         return 0;
+
+     }
+     */
 
      if (event->type() == QEvent::KeyPress)
      {
          QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
+         qDebug("event ");
           if (keyEvent->key() == Qt::Key_Return || keyEvent->key() == Qt::Key_Enter) {
                        return true;
+
      }
         return    QWidget::eventFilter(watched, event);
      }
