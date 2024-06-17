@@ -8,6 +8,7 @@
 #include <QJsonDocument>
 #include <QByteArray>
 #include <QMessageBox>
+#include <common/common.h>
 
 namespace Ui {
 class login;
@@ -39,6 +40,7 @@ protected:
     bool eventFilter(QObject* watched, QEvent* event) override;
 private:
     Ui::login *ui;
+    common com;
 };
 
 #endif // LOGIN_H

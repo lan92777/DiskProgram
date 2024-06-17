@@ -102,7 +102,7 @@ login::login(QWidget *parent) :QDialog(parent),ui(new Ui::login)
 QByteArray login::SetJoinLogin(){
     QMap<QString, QVariant> login;
     login.insert("user", ui->log_usr->text());
-    login.insert("pwd", ui->log_pwd->text());
+    login.insert("pwd", com.getstrMd5((QString)ui->log_pwd->text()));
     QJsonDocument jsonDocument = QJsonDocument::fromVariant(login);
     if ( jsonDocument.isNull() )
     {
