@@ -26,7 +26,7 @@
    <item>
     <widget class="QStackedWidget" name="stackedWidget">
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="Login">
       <widget class="QWidget" name="widget" native="true">
@@ -281,7 +281,7 @@
             <widget class="QWidget" name="widget_76" native="true">
              <layout class="QHBoxLayout" name="horizontalLayout_41">
               <item>
-               <widget class="QToolButton" name="login_btn_2">
+               <widget class="QToolButton" name="login_btn">
                 <property name="minimumSize">
                  <size>
                   <width>200</width>
@@ -761,7 +761,7 @@ color: rgb(255, 255, 255);</string>
             <widget class="QWidget" name="widget_37" native="true">
              <layout class="QHBoxLayout" name="horizontalLayout_21">
               <item>
-               <widget class="QToolButton" name="set_ok_btn_5">
+               <widget class="QToolButton" name="set_ok_btn">
                 <property name="minimumSize">
                  <size>
                   <width>200</width>

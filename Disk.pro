@@ -22,7 +22,8 @@ SOURCES += main.cpp\
     window_components/downlist.cpp \
     window_components/trans.cpp \
     common/des.c \
-    common/logintitle.cpp
+    common/logintitle.cpp \
+    common/common.cpp
 
 HEADERS  += mainwindow.h \
     login.h \
@@ -32,7 +33,8 @@ HEADERS  += mainwindow.h \
     window_components/downlist.h \
     window_components/trans.h \
     common/des.h \
-    common/logintitle.h
+    common/logintitle.h \
+    common/common.h
 
 FORMS    += mainwindow.ui \
     login.ui \

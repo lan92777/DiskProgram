@@ -26,7 +26,6 @@ login::login(QWidget *parent) :QDialog(parent),ui(new Ui::login)
         ui->reg_usr->setFocus();
     });
     //切换设置界面
-
     connect(ui->loginhead, &logintitle::SetWindow,[=](){
         ui->stackedWidget->setCurrentWidget(ui->Set);
         ui->address_server->setFocus();
@@ -70,12 +69,49 @@ login::login(QWidget *parent) :QDialog(parent),ui(new Ui::login)
     EnterEvent();
     this->installEventFilter(this);
 
+    //登陆信息的json设置
+    connect(ui->login_btn,&QToolButton::clicked,[=](){
+        QString user = ui->log_usr->text();
+        QString pwd = ui->log_pwd->text();
+        QString address = ui->address_server->text();
+        QString port = ui->port_server->text();
+
+        if(ui->log_usr->text().isEmpty())
+        {
+             QMessageBox::information(this, "提示", "用户名不能为空");
+             return 0;
+        }
+        if(ui->log_usr->text().isEmpty())
+        {
+             QMessageBox::information(this, "提示", "用户名不能为空");
+             return 0;
+        }
+        qDebug() << SetJoinLogin();
+
+
+
+
+         return 0;
+    });
+
 
      //测试操作
     testdate();
 
 }
+QByteArray login::SetJoinLogin(){
+    QMap<QString, QVariant> login;
+    login.insert("user", ui->log_usr->text());
+    login.insert("pwd", ui->log_pwd->text());
+    QJsonDocument jsonDocument = QJsonDocument::fromVariant(login);
+    if ( jsonDocument.isNull() )
+    {
+        qDebug() << ("Registered is empty");
+        return "";
+    }
+    return jsonDocument.toJson();
 
+}
 //背景设置
 void login::paintEvent(QPaintEvent *){
     //绘画背景信息
@@ -84,8 +120,7 @@ void login::paintEvent(QPaintEvent *){
     painter.drawPixmap(0, 0, width(), height(), pixmap);
 
 }
-
-
+//隐藏自带标题栏
 void login::SetTiltleHide()
 {
     this->setWindowFlags(this->windowFlags() | Qt::FramelessWindowHint);
@@ -95,7 +130,7 @@ login::~login()
 {
     delete ui;
 }
-//设置数据格式
+//设置数据格式提醒
 void login::SetDateFormat()
 {
     //设置密码
@@ -112,6 +147,7 @@ void login::SetDateFormat()
     ui->reg_pwd->setToolTip("合法字符:[a-z|A-Z|#|@|0-9|-|_|*],字符个数: 6~18");
     ui->reg_surepwd->setToolTip("合法字符:[a-z|A-Z|#|@|0-9|-|_|*],字符个数: 6~18");
 }
+//设置测试数据
 void login::testdate(){
     ui->reg_usr->setText("kevin_666");
     ui->reg_nickname->setText("kevin@666");
@@ -121,7 +157,7 @@ void login::testdate(){
     ui->reg_mail->setText("abc@qq.com");
 
 }
-
+//输入框enter事件
  void login::EnterEvent(){
 
      //connect(ui->log_usr, &QLineEdit::returnPressed,[=](){
@@ -134,7 +170,7 @@ void login::testdate(){
 
 
  }
-
+//事件过滤器
  bool login::eventFilter(QObject* watched, QEvent* event)
  {
      /*
@@ -149,13 +185,12 @@ void login::testdate(){
      if (event->type() == QEvent::KeyPress)
      {
          QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
-         qDebug("event ");
           if (keyEvent->key() == Qt::Key_Return || keyEvent->key() == Qt::Key_Enter) {
                        return true;
 
-     }
+            }
         return    QWidget::eventFilter(watched, event);
      }
-
+     return    QWidget::eventFilter(watched, event);
 }
 

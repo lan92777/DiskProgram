@@ -5,6 +5,10 @@
 #include <QPainter>
 #include <QDebug>
 #include<common/logintitle.h>
+#include <QJsonDocument>
+#include <QByteArray>
+#include <QMessageBox>
+
 namespace Ui {
 class login;
 }
@@ -24,6 +28,10 @@ public:
     void testdate();
     //输入时回车键的操作
     void EnterEvent();
+    //将登陆数据打包为json
+    QByteArray SetJoinLogin();
+    //将注册数据打包为json
+    QByteArray SetJoinRegistration();
 protected:
     //背景设置（回调函数）
     void paintEvent(QPaintEvent *);
