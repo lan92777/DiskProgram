@@ -71,11 +71,12 @@ login::login(QWidget *parent) :QDialog(parent),ui(new Ui::login)
 
     //登陆信息的json设置
     connect(ui->login_btn,&QToolButton::clicked,[=](){
+        //初始化数据
         QString user = ui->log_usr->text();
         QString pwd = ui->log_pwd->text();
         QString address = ui->address_server->text();
         QString port = ui->port_server->text();
-
+        //判断数据是否为空
         if(ui->log_usr->text().isEmpty())
         {
              QMessageBox::information(this, "提示", "用户名不能为空");
@@ -86,9 +87,17 @@ login::login(QWidget *parent) :QDialog(parent),ui(new Ui::login)
              QMessageBox::information(this, "提示", "用户名不能为空");
              return 0;
         }
+        //正则表达式判断登陆数据
+        if(REgexp())
+        {
+            return 0;
+        }
+        //写信息写进配置文件
         com.writeLoginInfo(user,pwd,ui->rember_pwd->isChecked());
-        qDebug() << SetJoinLogin();
-        qDebug() << ("1");
+        //获取
+        QByteArray memarry =  SetJoinLogin();
+
+
 
 
 
@@ -100,6 +109,27 @@ login::login(QWidget *parent) :QDialog(parent),ui(new Ui::login)
     testdate();
 
 }
+int login::REgexp(){
+    QRegExp regexp(USER_REG);
+    if(!regexp.exactMatch(ui->log_usr->text()))
+    {
+        QMessageBox::warning(this, "警告", "用户名格式不正确");
+        ui->log_usr->clear();
+        ui->log_usr->setFocus();
+        return 1;
+    }
+    regexp.setPattern(PASSWD_REG);
+    if(!regexp.exactMatch(ui->log_pwd->text()))
+    {
+        QMessageBox::warning(this, "警告", "密码格式不正确");
+        ui->log_pwd->clear();
+        ui->log_pwd->setFocus();
+        return  1;
+    }
+    return 0;
+
+}
+
 QByteArray login::SetJoinLogin(){
     QMap<QString, QVariant> login;
     login.insert("user", ui->log_usr->text());

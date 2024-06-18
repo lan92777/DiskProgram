@@ -22,8 +22,8 @@ QString common::getstrMd5(QString str)
      // web_server信息
      QString ip = getCfgValue("web_server", "ip");
      QString port = getCfgValue("web_server", "port");
-     //cout<<ip;
-     //cout<<port;
+     cout<<ip;
+     cout<<port;
 
      QMap<QString, QVariant> web_server;
      web_server.insert("ip", ip);

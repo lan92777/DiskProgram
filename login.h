@@ -9,6 +9,7 @@
 #include <QByteArray>
 #include <QMessageBox>
 #include <common/common.h>
+#include <QRegExp>
 
 namespace Ui {
 class login;
@@ -31,6 +32,8 @@ public:
     void EnterEvent();
     //将登陆数据打包为json
     QByteArray SetJoinLogin();
+    //将登陆数据进行校验
+    int REgexp();
     //将注册数据打包为json
     QByteArray SetJoinRegistration();
 protected:

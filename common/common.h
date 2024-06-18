@@ -11,7 +11,18 @@
 #include <QDebug>
 #include <iostream>
 
+//处理输出问题
 #define cout qDebug() << "[ " << __FILE__ << ":"  << __LINE__ << " ] "
+
+//正则表达式
+const QString USER_REG      = "^[\u4e00-\u9fa5a-zA-Z0-9]{6,12}$";
+const QString PASSWD_REG    = "^[a-zA-Z\\d_@#-*]{6,18}$";
+const QString PHONE_REG     = "1\\d\\{10\\}";
+const QString EMAIL_REG     = "^[a-zA-Z\\d\\._-]\\+@[a-zA-Z\\d_\\.-]\\+(\\.[a-zA-Z0-9_-]\\+)+$";
+const QString IP_REG        = "((2[0-4]\\d|25[0-5]|[01]?\\d\\d?)\\.){3}(2[0-4]\\d|25[0-5]|[01]?\\d\\d?)";
+const QString PORT_REG      = "^[1-9]$|(^[1-9][0-9]$)|(^[1-9][0-9][0-9]$)|(^[1-9][0-9][0-9][0-9]$)|(^[1-6][0-5][0-5][0-3][0-5]$)";
+
+
 
 //文件路径
 const QString CONFFILE      = "C:/Users/what/Desktop/Disk/Disk/conf/cfg.json";      //配置文件存储信息路径
