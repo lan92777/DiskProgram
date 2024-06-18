@@ -86,8 +86,9 @@ login::login(QWidget *parent) :QDialog(parent),ui(new Ui::login)
              QMessageBox::information(this, "提示", "用户名不能为空");
              return 0;
         }
+        com.writeLoginInfo(user,pwd,ui->rember_pwd->isChecked());
         qDebug() << SetJoinLogin();
-
+        qDebug() << ("1");
 
 
 

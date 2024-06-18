@@ -209,7 +209,7 @@
                </spacer>
               </item>
               <item>
-               <widget class="QCheckBox" name="rember_pwd_2">
+               <widget class="QCheckBox" name="rember_pwd">
                 <property name="font">
                  <font>
                   <family>新宋体</family>
