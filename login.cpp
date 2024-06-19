@@ -8,6 +8,9 @@ login::login(QWidget *parent) :QDialog(parent),ui(new Ui::login)
 {
 
     ui->setupUi(this);
+    //--初始化--
+    //网络请求
+    m_manager = com.getNetManager();
 
     //设置程序属性
     SetTiltleHide();
@@ -94,12 +97,17 @@ login::login(QWidget *parent) :QDialog(parent),ui(new Ui::login)
         }
         //写信息写进配置文件
         com.writeLoginInfo(user,pwd,ui->rember_pwd->isChecked());
-        //获取
+        //获取登陆信息的比特流
         QByteArray memarry =  SetJoinLogin();
-
-
-
-
+        //--设置网络包--
+        //设置登陆url
+        QNetworkRequest request;
+        QString url = QString("http://%1:%2/login").arg(address).arg(port);
+        request.setUrl(QUrl(url));
+        request.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("application/json"));
+        request.setHeader(QNetworkRequest::ContentLengthHeader, QVariant(memarry.size()));
+        //发送数据
+        QNetworkReply* reply = m_manager->post(request, memarry);
 
          return 0;
     });

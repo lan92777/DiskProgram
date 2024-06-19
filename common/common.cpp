@@ -2,6 +2,16 @@
 
 //QString common::m_typePath = FILETYPEDIR;
 
+
+
+//初始化变量
+//静态初始化方式初始化网络对象
+//QNetworkAccessManager* common::m_netManager = new QNetworkAccessManager;
+//懒加载式初始化网络对象
+QNetworkAccessManager* common::m_netManager = nullptr;
+
+
+
 common::common(QObject *parent)
 {
     Q_UNUSED(parent)
@@ -156,6 +166,16 @@ QString common::getstrMd5(QString str)
      return "";
 
 
+ }
+ QNetworkAccessManager *common::getNetManager()
+ {
+     if (!m_netManager) {
+            m_netManager = new QNetworkAccessManager();
+        }
+
+
+     // 该对象一般一个应用程序中有一个就够了，无需new多个
+     return  m_netManager;
  }
 common::~common()
 {

@@ -10,7 +10,8 @@
 #include <QFile>
 #include <QDebug>
 #include <iostream>
-
+#include <QNetworkReply>
+#include <QNetworkAccessManager>
 //处理输出问题
 #define cout qDebug() << "[ " << __FILE__ << ":"  << __LINE__ << " ] "
 
@@ -21,6 +22,7 @@ const QString PHONE_REG     = "1\\d\\{10\\}";
 const QString EMAIL_REG     = "^[a-zA-Z\\d\\._-]\\+@[a-zA-Z\\d_\\.-]\\+(\\.[a-zA-Z0-9_-]\\+)+$";
 const QString IP_REG        = "((2[0-4]\\d|25[0-5]|[01]?\\d\\d?)\\.){3}(2[0-4]\\d|25[0-5]|[01]?\\d\\d?)";
 const QString PORT_REG      = "^[1-9]$|(^[1-9][0-9]$)|(^[1-9][0-9][0-9]$)|(^[1-9][0-9][0-9][0-9]$)|(^[1-6][0-5][0-5][0-3][0-5]$)";
+
 
 
 
@@ -43,8 +45,11 @@ public:
     void writeLoginInfo(QString user, QString pwd, bool isRemeber, QString path = CONFFILE);
     //从配置文件中得到信息
     QString getCfgValue(QString title, QString key, QString path = CONFFILE);
-
+    // 得到http通信类对象(单例对象模式)
+    static QNetworkAccessManager* getNetManager();
 private:
+    //设置hhtp通讯的单例对象
+    static QNetworkAccessManager* m_netManager;
 
 };
 

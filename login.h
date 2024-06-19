@@ -10,6 +10,10 @@
 #include <QMessageBox>
 #include <common/common.h>
 #include <QRegExp>
+#include <QNetworkRequest>
+#include <QNetworkReply>
+
+
 
 namespace Ui {
 class login;
@@ -43,6 +47,9 @@ protected:
     bool eventFilter(QObject* watched, QEvent* event) override;
 private:
     Ui::login *ui;
+    //网络请求处理类
+    //获得网络类的单例对象
+    QNetworkAccessManager  *m_manager;
     common com;
 };
 
