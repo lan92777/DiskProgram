@@ -72,6 +72,12 @@ login::login(QWidget *parent) :QDialog(parent),ui(new Ui::login)
     EnterEvent();
     this->installEventFilter(this);
 
+    //测试
+    ui->log_usr->setText("12345678");
+    ui->log_pwd->setText("12345678");
+
+    //测试
+
     //登陆信息的json设置
     connect(ui->login_btn,&QToolButton::clicked,[=](){
         //初始化数据
@@ -97,7 +103,14 @@ login::login(QWidget *parent) :QDialog(parent),ui(new Ui::login)
         }
         //写信息写进配置文件
         com.writeLoginInfo(user,pwd,ui->rember_pwd->isChecked());
+        //测试
+        address="192.168.73.128";
+        port="80";
+        //测试
+
+
         //获取登陆信息的比特流
+
         QByteArray memarry =  SetJoinLogin();
         //--设置网络包--
         //设置登陆url
@@ -108,7 +121,42 @@ login::login(QWidget *parent) :QDialog(parent),ui(new Ui::login)
         request.setHeader(QNetworkRequest::ContentLengthHeader, QVariant(memarry.size()));
         //发送数据
         QNetworkReply* reply = m_manager->post(request, memarry);
+        cout << "post url:" << url << "post data: " << memarry;
+        //检验回发的数据
+        connect(reply, &QNetworkReply::finished, [=]()
+        {
+            // 出错了
+            if (reply->error() != QNetworkReply::NoError)
+            {
+                cout << reply->errorString();
+                //释放资源
+                reply->deleteLater();
+                return;
+            }
+            //读取数据
+            QByteArray json =reply->readAll();
+            //数据包例子如下
+            /*
+              "code":	"000",
+              "token":	"c818303fcaac6d8732ab69c0a4127958"
+            */
+            cout << "服务器反馈数据: " << json;
+            //将数据存储到字符串列表
+            QStringList tmpList = getLoginStatus(json); //common.h
+            //判断是否成功
+            if( tmpList.at(0) == "000" )
+            {
+                cout << "登陆成功";
 
+
+            }
+            else
+            {
+                QMessageBox::warning(this, "登录失败", "用户名或密码不正确！！！");
+            }
+
+            reply->deleteLater(); //释放资源
+        });
          return 0;
     });
 
@@ -233,3 +281,38 @@ void login::testdate(){
      return    QWidget::eventFilter(watched, event);
 }
 
+//获得登陆状态
+ QStringList login::getLoginStatus(QByteArray json)
+ {
+     QJsonParseError error;
+     QStringList list;
+
+     // 将来源数据json转化为JsonDocument
+     // 由QByteArray对象构造一个QJsonDocument对象，用于我们的读写操作
+     QJsonDocument doc = QJsonDocument::fromJson(json, &error);
+     if (error.error == QJsonParseError::NoError)
+     {
+         if (doc.isNull() || doc.isEmpty())
+         {
+             cout << "doc.isNull() || doc.isEmpty()";
+             return list;
+         }
+
+         if( doc.isObject() )
+         {
+             //取得最外层这个大对象
+             QJsonObject obj = doc.object();
+             cout << "服务器返回的数据" << obj;
+             //状态码
+             list.append( obj.value( "code" ).toString() );
+             //登陆token
+             list.append( obj.value( "token" ).toString() );
+         }
+     }
+     else
+     {
+         cout << "err = " << error.errorString();
+     }
+
+     return list;
+ }

@@ -40,6 +40,8 @@ public:
     int REgexp();
     //将注册数据打包为json
     QByteArray SetJoinRegistration();
+    //得到登陆状态
+    QStringList getLoginStatus(QByteArray json);
 protected:
     //背景设置（回调函数）
     void paintEvent(QPaintEvent *);
