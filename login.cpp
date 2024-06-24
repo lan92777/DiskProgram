@@ -105,6 +105,7 @@ login::login(QWidget *parent) :QDialog(parent),ui(new Ui::login)
         com.writeLoginInfo(user,pwd,ui->rember_pwd->isChecked());
         //测试
         address="192.168.73.128";
+        //address="192.168.73.132";
         port="80";
         //测试
 
