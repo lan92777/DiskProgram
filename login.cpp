@@ -106,6 +106,8 @@ login::login(QWidget *parent) :QDialog(parent),ui(new Ui::login)
         //测试
         address="192.168.73.132";
         //address="192.168.73.132";
+
+        //
         port="80";
         //测试
 
