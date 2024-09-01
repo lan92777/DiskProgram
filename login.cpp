@@ -113,7 +113,7 @@ login::login(QWidget *parent) :QDialog(parent),ui(new Ui::login)
 
 
         //获取登陆信息的比特流
-
+        //将
         QByteArray memarry =  SetJoinLogin();
         //--设置网络包--
         //设置登陆url
@@ -150,7 +150,6 @@ login::login(QWidget *parent) :QDialog(parent),ui(new Ui::login)
             if( tmpList.at(0) == "000" )
             {
                 cout << "登陆成功";
-
 
             }
             else
