@@ -36,34 +36,36 @@ md5=$(CGI_BIN_PATH)/md5
 target=$(login)    \
        $(register) \
 	   $(md5) 
-
+ALL:$(target)
 
 #------------------操作-----------------
-$(login):   $(CGI_SRC_PATH)/login_cgi.o \
-            $(COMMON_PATH)/make_log.o  \
-            $(COMMON_PATH)/cJSON.o \
-            $(COMMON_PATH)/deal_mysql.o \
-            $(COMMON_PATH)/redis_op.o  \
-            $(COMMON_PATH)/cfg.o \
-            $(COMMON_PATH)/util_cgi.o \
-            $(COMMON_PATH)/des.o \
-            $(COMMON_PATH)/base64.o \
-            $(COMMON_PATH)/md5.o
+$(login):	$(CGI_SRC_PATH)/login_cgi.o \
+    $(COMMON_PATH)/make_log.o  \
+    $(COMMON_PATH)/cJSON.o \
+    $(COMMON_PATH)/deal_mysql.o \
+    $(COMMON_PATH)/redis_op.o  \
+    $(COMMON_PATH)/cfg.o \
+    $(COMMON_PATH)/util_cgi.o \
+    $(COMMON_PATH)/des.o \
+    $(COMMON_PATH)/base64.o \
+    $(COMMON_PATH)/md5.o
+	$(CC) $^ -o $@ $(LIBS)
+	
+$(register): 	$(CGI_SRC_PATH)/reg_cgi.o \
+	$(COMMON_PATH)/make_log.o  \
+    $(COMMON_PATH)/util_cgi.o \
+    $(COMMON_PATH)/cJSON.o \
+    $(COMMON_PATH)/deal_mysql.o \
+    $(COMMON_PATH)/redis_op.o  \
+    $(COMMON_PATH)/cfg.o
 	$(CC) $^ -o $@ $(LIBS)
 
-$(register):    $(CGI_SRC_PATH)/reg_cgi.o \
-                $(COMMON_PATH)/make_log.o  \
-                $(COMMON_PATH)/util_cgi.o \
-                $(COMMON_PATH)/cJSON.o \
-                $(COMMON_PATH)/deal_mysql.o \
-                $(COMMON_PATH)/redis_op.o  \
-                $(COMMON_PATH)/cfg.o
-	$(CC) $^ -o $@ $(LIBS)
+
 $(md5):     $(CGI_SRC_PATH)/md5_cgi.o \
             $(COMMON_PATH)/make_log.o  \
             $(COMMON_PATH)/util_cgi.o \
             $(COMMON_PATH)/cJSON.o \
-            $(COMMON_PATH)/deal_mysql.o \
+            $(COMMON_PATH)/deal_mysql.o\
             $(COMMON_PATH)/redis_op.o  \
             $(COMMON_PATH)/cfg.o
 	$(CC) $^ -o $@ $(LIBS)
